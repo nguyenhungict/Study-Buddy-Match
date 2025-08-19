@@ -55,4 +55,4 @@ git push -u origin main
 
 ## Ghi chú
 - Proxy FE → BE đã cấu hình sẵn: mọi request từ FE tới `/api` sẽ chuyển đến `http://localhost:5000`.
-- Có sẵn endpoint kiểm tra sức khỏe backend: `GET /api/health`.
+- Có sẵn endpoint kiểm tra backend: `GET /api/health`.
