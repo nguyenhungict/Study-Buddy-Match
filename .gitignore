@@ -1,0 +1,24 @@
+# Node
+node_modules/
+
+# Builds
+frontend/dist/
+backend/dist/
+dist/
+.build/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Env
+.env
+.env.*
+
+# Misc
+.DS_Store
+.vscode/
+.vercel/
+.netlify/
+coverage/
