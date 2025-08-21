@@ -146,6 +146,142 @@ button {
   min-height: calc(100vh - 120px); /* Account for header and footer */
 }
 
+/* Page Styles */
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem 0;
+}
+
+.page-header h1 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.page-header p {
+  color: #7f8c8d;
+  font-size: 1.2rem;
+}
+
+.page-content {
+  min-height: 400px;
+}
+
+/* Blank Section Styles */
+.blank-section {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+}
+
+.blank-section h2 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+}
+
+.blank-section p {
+  color: #7f8c8d;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+/* Feature Suggestions */
+.feature-suggestions {
+  text-align: left;
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 8px;
+  border-left: 4px solid #3498db;
+}
+
+.feature-suggestions h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.feature-suggestions ul {
+  list-style: none;
+  padding: 0;
+}
+
+.feature-suggestions li {
+  padding: 0.5rem 0;
+  color: #555;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.feature-suggestions li:last-child {
+  border-bottom: none;
+}
+
+/* Developer Info */
+.dev-info {
+  text-align: left;
+  max-width: 600px;
+  margin: 0 auto;
+  background: #fff3cd;
+  padding: 2rem;
+  border-radius: 8px;
+  border-left: 4px solid #ffc107;
+}
+
+.dev-info h3 {
+  color: #856404;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.dev-info p {
+  color: #856404;
+  margin-bottom: 0.5rem;
+}
+
+.dev-info code {
+  background: #e9ecef;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+}
+
+/* Status Indicators */
+.status-pending {
+  color: #f39c12;
+  font-weight: 600;
+}
+
+.status-unassigned {
+  color: #e74c3c;
+  font-weight: 600;
+}
+
+.priority-high {
+  color: #e74c3c;
+  font-weight: 600;
+}
+
+.priority-medium {
+  color: #f39c12;
+  font-weight: 600;
+}
+
+.priority-low {
+  color: #27ae60;
+  font-weight: 600;
+}
+
 /* Dashboard Styles */
 .dashboard-page {
   padding: 2rem 0;
@@ -256,6 +392,18 @@ button {
     padding-top: 16px;
   }
   
+  .page-container {
+    padding: 0 1rem;
+  }
+  
+  .blank-section {
+    padding: 2rem 1rem;
+  }
+  
+  .blank-section h2 {
+    font-size: 2rem;
+  }
+  
   .dashboard-container {
     padding: 0 1rem;
   }
@@ -266,5 +414,10 @@ button {
   
   .empty-state h2 {
     font-size: 2rem;
+  }
+  
+  .feature-suggestions,
+  .dev-info {
+    padding: 1.5rem;
   }
 } 
