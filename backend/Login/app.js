@@ -1,27 +1,55 @@
+// Login/app.js
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const authRoutes = require('./routes/auth');
 
 dotenv.config();
 
+const authRoutes = require('./routes/auth');
 const app = express();
 
-app.use(cors()); // Đây là dòng đã được thêm vào
+/* ===== Config ===== */
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
+const MONGO_URI = process.env.MONGO_URI;
 
-// Middleware: This is crucial for parsing JSON data from the body of incoming requests.
-// It must be placed after 'const app = express();' but before your routes.
-app.use(express.json());
+/* ===== Middleware ===== */
+app.use(cors({ origin: FRONTEND_URL, credentials: true }));
+app.use(express.json({ limit: '1mb' }));
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI)
+/* ===== DB Connect ===== */
+if (!MONGO_URI) {
+  console.error('Missing MONGO_URI in .env');
+  process.exit(1);
+}
+mongoose
+  .connect(MONGO_URI)
   .then(() => console.log('MongoDB connected'))
-  .catch(err => console.log(err));
+  .catch((err) => {
+    console.error('MongoDB connection error:', err);
+    process.exit(1);
+  });
 
-// Routes
-// Your application's routes should be placed here, after the middleware.
+/* ===== Test routes (tuỳ chọn) ===== */
+app.get('/api/health', (_req, res) => res.json({ ok: true }));
+app.get('/api/greeting', (_req, res) => res.json({ message: 'Hello from backend API' }));
+
+/* ===== Business routes ===== */
 app.use('/api/auth', authRoutes);
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+/* ===== Redirect legacy HTML link -> SPA ===== */
+app.get('/reset-password.html', (req, res) => {
+  const q = req.originalUrl.includes('?')
+    ? req.originalUrl.slice(req.originalUrl.indexOf('?'))
+    : '';
+  res.redirect(`${FRONTEND_URL}/reset-password${q}`);
+});
+
+/* ===== 404 & Error Handler ===== */
+app.use((req, res) => res.status(404).json({ msg: 'Not found' }));
+app.use((err, req, res, _next) => {
+  console.error('Unhandled error:', err);
+  res.status(500).json({ msg: err?.message || 'Server error' });
+});
+
+module.exports = app; // ⚠️ export app, KHÔNG listen ở đây
